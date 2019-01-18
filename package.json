@@ -1,0 +1,20 @@
+{
+  "name": "mosaic-4-canvas",
+  "version": "1.0.0",
+  "description": "mosaic for canvas",
+  "license": "MIT",
+  "repository": "anhulife/mosaic-4-canvas",
+  "main": "bundle.js",
+  "scripts": {
+    "demo": "npm run build && serve .",
+    "build": "rollup main.js --file bundle.js --format umd --name \"mosaic4Canvas\"",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "bundle.js"
+  ],
+  "devDependencies": {
+    "rollup": "^1.1.0",
+    "serve": "^10.1.1"
+  }
+}

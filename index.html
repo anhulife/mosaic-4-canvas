@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mosaic 4 Canvas</title>
+  <style>
+    .container img {
+      width: 45%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img id="source-image" src="./demo.jpg" alt="" onload="mosaic()">
+    <img id="target-image" src="./demo.jpg" alt="">
+  </div>
+
+  <script src="./bundle.js"></script>
+  <script>
+    function mosaic() {
+      const $sourceImage = document.querySelector('#source-image');
+      const $targetImage = document.querySelector('#target-image');
+
+      const { naturalWidth: width, naturalHeight: height } = $sourceImage;
+      
+      const canvas = new OffscreenCanvas(width, height);
+      const context = canvas.getContext('2d');
+
+      context.drawImage($sourceImage, 0, 0);
+      const sourceImageData = context.getImageData(0, 0, width, height);
+      
+      const mosaicImageData = mosaic4Canvas(sourceImageData);
+      context.putImageData(mosaicImageData, 0, 0);
+
+      canvas.convertToBlob()
+        .then(blob => URL.createObjectURL(blob))
+        .then(url => ($targetImage.src = url));
+    }
+  </script>
+</body>
+</html>
