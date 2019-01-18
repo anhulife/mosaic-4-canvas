@@ -5,6 +5,11 @@
   "license": "MIT",
   "repository": "anhulife/mosaic-4-canvas",
   "main": "bundle.js",
+  "keywords": [
+    "canvas",
+    "mosaic",
+    "graphic"
+  ],
   "scripts": {
     "demo": "npm run build && serve .",
     "build": "rollup main.js --file bundle.js --format umd --name \"mosaic4Canvas\"",
